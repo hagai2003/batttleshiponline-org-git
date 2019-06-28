@@ -1,0 +1,48 @@
+body {margin:0px;background-color:black;color:#ffffff;letter-spacing:0.1em;font-family:Arial, Times, serif;}
+td {font:11px Arial, Helvetica, sans-serif;color:#ffffff;}	
+a {color:#FF6600;font-weight:bold;text-decoration:none;}
+a:hover {color:#FFBA00;}	
+#navigation a {font:10px Arial, Helvetica, sans-serif;color:#26354A;text-decoration:none;letter-spacing:0.1em;line-height:16px;display:block;padding:0px 10px;border-right:1px solid #FF6600;}
+#navigation a:hover {color:#ffffff;background:#FF6600;}
+#padding {padding:14px;}
+#calendar td {border:1px solid #26354A;}
+#noborder td {border:0px;}
+#calheader td {font-weight:bold;color:#ffffff;}
+.logo {font:24px Times New Roman, Times, serif;color:#FFBA00;letter-spacing:0.15em;vertical-align:middle;}
+.tagline {font:13px Arial, Helvetica, sans-serif;color:#D3DCE6;vertical-align:middle;}	
+.bodyText {font:11px Arial, Helvetica, sans-serif;line-height:22px;color:#ffffff;letter-spacing:0.1em;}
+.detailText {font:11px Arial, Helvetica, sans-serif;line-height:16px;color:#26354A;letter-spacing:0.1em;}	
+.pageName {font:24px Arial, Helvetica, sans-serif;color:#FF6600;	letter-spacing:0.2em;line-height:20px;margin-top:0px;margin-bottom:2px;}	
+.pageSubTitle {font:16px Arial, Helvetica, sans-serif;color:#FF6600;	letter-spacing:0.2em;line-height:16px;margin-top:0px;margin-bottom:2px;}	
+.pageNameH4 {font:18px Arial, Helvetica, sans-serif;color:#FF6600;letter-spacing:0.2em;line-height:20px;	margin-top:0px;margin-bottom:2px;}
+.subHeader {	font:bold 12px Arial, Helvetica, sans-serif;color:#2D374D;font-weight:bold;line-height:20px;letter-spacing:0.1em;}
+.navText {font:10px Arial, Helvetica, sans-serif;color:#26354A;letter-spacing:0.1em;text-align:center;line-height:16px;}
+.boldLink {font-weight:bold;font:13px Arial, Helvetica, sans-serif;}
+.calendarText {font:11px Arial, Helvetica, sans-serif;color:#26354A;letter-spacing:0.1em;}
+.aunderline {text-decoration:underline;}
+.sidebarTextUnderline {font:11px Arial, Helvetica, sans-serif;color: #FFBA00;letter-spacing:0.1em;line-height:18px;text-decoration:underline;}
+.subTitle{font:14px Arial, Helvetica, sans-serif;color:#FF6600;letter-spacing:0.2em;line-height:20px;margin-top:0px;margin-bottom:2px;}
+.moregamestop {font:11px Arial, Helvetica, sans-serif;color:#FFBA00;letter-spacing:0.1em;line-height:18px;text-align:left;}
+.sidebarText {font:11px Arial, Helvetica, sans-serif;color:#FFBA00;letter-spacing:0.1em;line-height:18px;}
+.moregamestd {vertical-align:top;text-align:left;}
+.sidebarOrange {color:#FF6600;font-weight:bold;padding-left:5px;}
+
+.imgThumb {border:1px solid #657383;}
+.imgThumb:hover {border:1px solid #FFA500;}
+
+.gameThumbTD {text-align:left;width:145px;height:124px;}
+.gamesSubMenuDiv {width:600px;border:1px solid white;}
+
+/* firefox image placeholder */
+@-moz-document url-prefix(http), url-prefix(file) 
+{
+	img:-moz-broken{
+	-moz-force-broken-image-icon:1;
+	}
+}
+
+input.gsc-search-button.gsc-search-button
+{
+    background-color: #D2D2D2;
+	color:black;
+}
