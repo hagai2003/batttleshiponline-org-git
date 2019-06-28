@@ -1,0 +1,7 @@
+[04-Feb-2018 09:50:28 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+[09-Dec-2018 16:07:47 UTC] PHP Warning:  mysql_connect(): Connection refused in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+[09-Dec-2018 16:07:58 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+[09-Dec-2018 16:08:03 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+[09-Dec-2018 16:08:07 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+[09-Dec-2018 16:08:11 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+[09-Dec-2018 16:08:14 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
