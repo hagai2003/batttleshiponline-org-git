@@ -1,7 +1,18 @@
-[04-Feb-2018 09:50:28 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
-[09-Dec-2018 16:07:47 UTC] PHP Warning:  mysqli_connect(): Connection refused in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
-[09-Dec-2018 16:07:58 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
-[09-Dec-2018 16:08:03 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
-[09-Dec-2018 16:08:07 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
-[09-Dec-2018 16:08:11 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
-[09-Dec-2018 16:08:14 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshipmobile/baseurl.php on line 194
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+
+
+RewriteCond %{HTTP_HOST} ^battleshiponline.org [NC]
+RewriteRule ^(.*)$ https://www.battleshiponline.org/$1 [L,R=301]
+RewriteRule ^idlogger/(.*)$ https://www.battleshiponline.org [R=301,L]
+RewriteRule ^hmailer/(.*)$ https://www.battleshiponline.org [R=301,L]
+
+RewriteCond %{HTTP_HOST} m.battleshiponline.org [NC]
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ https://www.battleshiponline.org/$1 [L,R=301]
+
+</IfModule>
