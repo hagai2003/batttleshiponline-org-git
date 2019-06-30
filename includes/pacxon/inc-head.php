@@ -1,9 +1,7 @@
-<?php 
-include("includes/Mobile_Detect.php");
+<?php
 global $mobileDetect;
-$mobileDetect = new Mobile_Detect;
 
-if ($mobileDetect->isMobile()) { 
+if ($mobileDetect->isMobile()) {
 $homepage_728x90_ad_include = false;
 $homepage_160x600_ad_include = false;
 $gamepage_728x90_ad_include = false;

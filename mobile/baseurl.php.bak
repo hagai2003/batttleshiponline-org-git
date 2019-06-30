@@ -183,21 +183,21 @@ function establish_db()
 	{
 		if ((isset($_SERVER['HTTP_HOST'])) && ($_SERVER['HTTP_HOST'] == "localhost"))
 		{
-			$conn5 = mysql_connect("localhost", "root", "") or $GLOBALS['workoffline'] = true;  // host/user/pass
-//			$conn5 = mysql_connect("localhost", "root", "") or $GLOBALS['workoffline'] = true;  // host/user/pass
+			$conn5 = mysqli_connect("localhost", "root", "") or $GLOBALS['workoffline'] = true;  // host/user/pass
+//			$conn5 = mysqli_connect("localhost", "root", "") or $GLOBALS['workoffline'] = true;  // host/user/pass
 			mysql_select_db("battleships") or $GLOBALS['workoffline'] = true;
 		}
 		else
 		{
-//			$conn5 = mysql_connect("hagaizenberg.dyndns.org", "mongoose", "cola5595") or $GLOBALS['workoffline'] = true;  // host/user/pass
-//			$conn5 = @mysql_connect("man839a0z.db.8759362.hostedresource.com", "man839a0z", "ii89aaapOIOa") or $GLOBALS['workoffline'] = true;
-			$conn5 = mysql_connect("localhost", "avatarga_battles", "dd4$fkoDx") or $GLOBALS['workoffline'] = true;  // host/user/pass
+//			$conn5 = mysqli_connect("hagaizenberg.dyndns.org", "mongoose", "cola5595") or $GLOBALS['workoffline'] = true;  // host/user/pass
+//			$conn5 = @mysqli_connect("man839a0z.db.8759362.hostedresource.com", "man839a0z", "ii89aaapOIOa") or $GLOBALS['workoffline'] = true;
+			$conn5 = mysqli_connect("localhost", "avatarga_battles", "dd4$fkoDx") or $GLOBALS['workoffline'] = true;  // host/user/pass
 			@mysql_select_db("avatarga_battles") or $GLOBALS['workoffline'] = true;
 		}
 
 		if (!$GLOBALS['workoffline'])
 		{
-			mysql_query("SET character_set_results=utf8", $conn5);
+			mysqli_query("SET character_set_results=utf8", $conn5);
 		}	
 		if ($GLOBALS['workoffline'] && !$GLOBALS['allow_offline_mode'])
 		{

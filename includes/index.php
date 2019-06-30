@@ -5,6 +5,18 @@ global $pagename;
 require("baseurl.php");
 include("includes/services.php");
 include("includes/lang.php");
+include("includes/lang.php");
+
+include_once("includes/Mobile_Detect.php");
+global $mobileDetect;
+$mobileDetect = new Mobile_Detect;
+
+if ($mobileDetect->isMobile() || $mobileDetect->isTablet())
+{
+	$template_name=$template_name."mobile";
+}
+
+
 handle_specific_pages();
 $pagename=get_current_full_uri();
 
@@ -15,11 +27,11 @@ pageExists();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php
-include("includes/".$GLOBALS['template_name']."/inc-head.php"); 
+include("includes/".$GLOBALS['template_name']."/inc-head.php");
 ?>
 </head>
 <body>
-<?php 
+<?php
 include("includes/".$GLOBALS['template_name']."/inc-title.php");
 // ---------------------------
 // page content - starting
@@ -27,7 +39,7 @@ include("includes/".$GLOBALS['template_name']."/inc-title.php");
 if (pageExists())
 {
 	$pagetoinclude="includes/".$GLOBALS['template_name']."/page-".get_page_content($pagename,'type').".php";
-	
+
 	if (!@include($pagetoinclude)) //(file_exists($pagetoinclude))
 	{
 		error_page_404("Template Page");

@@ -43,9 +43,9 @@ if (!isset($GLOBALS['enableCategories']))
 	$GLOBALS['enableCategories']=false;
 }
 
-// ---------------------------------------------- 
+// ----------------------------------------------
 // assaf template function - start
-// ---------------------------------------------- 
+// ----------------------------------------------
 function getcatdisplayname($icatid)
 {
 	global $categories;
@@ -75,7 +75,7 @@ function protectstring($original, $mode)
 	$newstr = $original;
 	$newstr = trim($newstr);
 	if (($mode == "mysql") || ($mode == "mysqlstrict"))
-	{	
+	{
 		if (!$GLOBALS['workoffline'])
 		{
 			$newstr = mysql_real_escape_string($newstr);
@@ -87,9 +87,9 @@ function protectstring($original, $mode)
 	return $newstr;
 }
 
-// ---------------------------------------------- 
+// ----------------------------------------------
 // assaf template function - end
-// ---------------------------------------------- 
+// ----------------------------------------------
 
 function p($msg)
 {
@@ -102,13 +102,13 @@ function nep($msg)
 	$var = "$msg".'_'.$GLOBALS['lang'];
 	return $GLOBALS[$var];
 }
- 
+
 // ---------------------------------------------
-//  ads MUST use this format:   
+//  ads MUST use this format:
 // ---------------------------------------------
 //  adname_SIZE_ad_include = true/false
-//  adname_SIZE_ad_type = adsense, cpmstar etc  
-// 
+//  adname_SIZE_ad_type = adsense, cpmstar etc
+//
 // ---------------------------------------------
 //	e.x. variables & file name:
 // ---------------------------------------------
@@ -127,7 +127,7 @@ function adsystem($ad_name)
 			echo '<img src="'.$img_ad.'" alt="local ad"/>';
 		}
 		else
-		{ 
+		{
 			$ad_file_to_include="inc-ad-".$ad_name."-".$GLOBALS[$ad_name."_ad_type"].".php";
 
 			if (file_exists($ad_file_to_include))
@@ -157,9 +157,9 @@ function get_ad_content_deprecated($ad_name)  // Hagai: get ad content from DB b
 {
 
 	$gamesql = "select adcontent from ads where adname='".$ad_name."'";
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a131"), "","");
-	
-	if ($row = mysql_fetch_array($query))
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,402,nep("a131"), "","");
+
+	if ($row = mysqli_fetch_array($query))
 	{
 		return $row['adcontent'];
 	}
@@ -173,6 +173,7 @@ function get_ad_content_deprecated($ad_name)  // Hagai: get ad content from DB b
 
 function get_page_content($page_internal_name,$section_name)
 {
+	global $conn5;
 	if ($page_internal_name == "index")
 	{
 		$gamesql = "select ".$section_name." from tgames where type='".$page_internal_name."'";
@@ -181,19 +182,19 @@ function get_page_content($page_internal_name,$section_name)
 	{
 		$gamesql = "select ".$section_name." from tgames where gameinternalname='".$page_internal_name."'";
 	}
-	$query = mysql_query($gamesql) or errorpage(false,442,nep("a131"), "","");
-	
-	if ($row = mysql_fetch_array($query))
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,442,nep("a131"), "","");
+
+	if ($row = mysqli_fetch_array($query))
 	{
 		$result=$row[$section_name];
-		
+
 		// updating global variables such as $website_single_word_name, $site_name_with_tld etc.
 
 		$result=str_replace('$website_single_word_name',$GLOBALS['website_single_word_name'],$result);
 		$result=str_replace('$site_name_with_tld',$GLOBALS['site_name_with_tld'],$result);
 		$result=str_replace('$website_title_name',$GLOBALS['website_title_name'],$result);
 		$result=str_replace('$contact_us_page',get_contact_page_name(),$result);
-		
+
 
 		return $result;
 	}
@@ -210,17 +211,18 @@ function get_page_content_by_type($page_type,$section_name)
 
 function get_page_name_by_type($type)
 {
+	global $conn5;
 	$gamesql = "select gameinternalname from tgames where type='".$type."'";
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a131"), "","");
-	
-	if ($row = mysql_fetch_array($query))
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,402,nep("a131"), "","");
+
+	if ($row = mysqli_fetch_array($query))
 	{
 		return $row['gameinternalname'];
 	}
 	else
 	{
 		return "";
-	}	
+	}
 }
 function get_contact_page_name()
 {
@@ -261,11 +263,11 @@ function get_current_page_uri()
 		$pfile = strstr($pfile, '?', true);
 	}
 	$filegameinternalname = substr($pfile, 0, strlen($pfile) - 4);
-	if (($filegameinternalname=="") && (("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl()) || ("http://www.".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl()))) 
+	if (($filegameinternalname=="") && (("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl()) || ("http://www.".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl())))
 	{
 		return "index";
 	}
-	elseif ($filegameinternalname=="index")					
+	elseif ($filegameinternalname=="index")
 	{
 		if (("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl().'index.php') || ("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl().'/index.php') ||
 			("http://www.".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl().'index.php') || ("http://www.".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==returnbaseurl().'/index.php'))
@@ -273,7 +275,7 @@ function get_current_page_uri()
 			return "index";
 		}
 		else
-		{	
+		{
 			return "404";
 		}
 	}
@@ -323,7 +325,7 @@ function get_gameid_by_internalname($page_internal_name)
 function does_mysql_record_exist($table,$where)
 {
 	$numRecords = get_mysql_count($table,$where);
-	if ($numRecords > 0) 
+	if ($numRecords > 0)
 	{
 		return true;
 	}
@@ -335,17 +337,19 @@ function does_mysql_record_exist($table,$where)
 
 function get_mysql_record($query)
 {
-	$result = mysql_query($query) or die(mysql_error().$query);
-	$row = mysql_fetch_array($result);
+	global $conn5;
+	$result = mysqli_query($conn5,$query) or die(mysql_error().$query);
+	$row = mysqli_fetch_array($result);
 	return $row[0];
 
 }
 
 function get_mysql_count($table,$where)
 {
+	global $conn5;
 	$mysqlquery="SELECT COUNT(*) AS num FROM ".$table." ".$where;
-	$data = mysql_query($mysqlquery)  or errorpage(false,403,nep("a131"), "","",$mysqlquery);
-	$row = mysql_fetch_assoc($data);
+	$data = mysqli_query($conn5,$mysqlquery)  or errorpage(false,403,nep("a131"), "","",$mysqlquery);
+	$row = mysqli_fetch_assoc($data);
 	$numRecords = $row['num'];
 	return $numRecords;
 }
@@ -368,14 +372,15 @@ function template_html_menu($where_clause,
 			$menu_prefix,
 			$menu_middle,
 			$menu_suffix,
-			$limit, 
+			$limit,
 			$seperator_num=0,
 			$seperator_html="",
 			$compensate_html="",
 			$show_more_articles_button_if_relevant=false,
-			$ignore_contact_and_links_pages=false) 
+			$ignore_contact_and_links_pages=false)
 {
-	// menu is showing only games and articles, and if 'links' or 'contact' pages are tagged in baseurl 
+	global $conn5;
+	// menu is showing only games and articles, and if 'links' or 'contact' pages are tagged in baseurl
 	// then we also showing them at end
 
 	$additional_where=" and (type='game' || type='article' || type='index' || type='link')";
@@ -401,7 +406,7 @@ function template_html_menu($where_clause,
 	if ($total_records>$limit)
 	{
 		// we've got more records than we're willing to show
-		
+
 		// checking whether to show more articles button
 		if ($show_more_articles_button_if_relevant)
 		{
@@ -410,13 +415,13 @@ function template_html_menu($where_clause,
 		// limiting number of records to $limit
 		$total_records = $limit;
 	}
-	
+
 	// fetching all menu items
 	$gamesql = "select gameid,gameinternalname,digsolitmenu,gamename,type from tgames ".$where_clause.$additional_where." and published='1' order by intoolbar asc limit 0,".$limit;
-	$query = mysql_query($gamesql) or errorpage(false,401,nep("a131"), "","");
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,401,nep("a131"), "","");
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		$counter = $counter +1;
 		$gameinternalname = $row['gameinternalname'];
@@ -435,11 +440,11 @@ function template_html_menu($where_clause,
 		}
 
 		$gameid = $row['gameid'];
-		
+
 		$type = $row['type'];
 
 		echo $menu_prefix;
-		
+
 		if ($type=="index")
 		{
 			echo returnhomepage();
@@ -458,7 +463,7 @@ function template_html_menu($where_clause,
 		}
 
 	}
-	
+
 	// show more_articles button
 	if ($show_more_articles)
 	{
@@ -503,7 +508,7 @@ function handle_specific_pages()
 	$break = Explode('/', $file);
 	$pfile = $break[count($break) - 1];
 	//echo $pfile;
-	
+
 	if ($pfile == $GLOBALS['contact_image_filename'])
 	{
 		$text = $GLOBALS['contact_email'];
@@ -515,7 +520,7 @@ function handle_specific_pages()
 
 		// Make the background red
 		imagefilledrectangle($im, 0, 0, 299, 99, $backgroundColour);
-	
+
 		// Path to our ttf font file
 		$font_file = './fonts/'.$GLOBALS['contact_image_font'];
 
@@ -608,10 +613,10 @@ function print_more_articles($prefix,$middle,$suffix)
 {
 	// fetching all articles
 	$gamesql = "select gameid,gameinternalname,gamename,type from tgames where type='article' and published='1' order by intoolbar asc";
-	$query = mysql_query($gamesql) or errorpage(false,401,nep("a131"), "","");
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,401,nep("a131"), "","");
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		$counter = $counter +1;
 		$gameinternalname = $row['gameinternalname'];
@@ -710,7 +715,7 @@ function returnwwwroot()
 	{
 		$wwwroot = $GLOBALS['site_base_url'].'/';
 	}
-	
+
 	$wwwroot=str_replace("http://","",$wwwroot);
 	if (strpos($wwwroot,"/"))
 	{
@@ -724,7 +729,7 @@ if (substr(returnbaseurl(),0,16) == "http://localhost")
 {
 	$debug_mode = true;
 	error_reporting( E_ALL );
-	ini_set("display_errors", 1);	
+	ini_set("display_errors", 1);
 }
 else
 {
@@ -760,8 +765,8 @@ function printHighScores($novel_gameid, $duration)
 <tr><td colspan="4" style="padding-top:8px;padding-bottom:8px;"><span class="sidebarOrange">&nbsp;<?php //echo get_current_page_content("gamename"); ?>&nbsp;&nbsp;Hall of Fame:</span>
 &nbsp; (
 	<!--	<a onclick="javascript:updateScores(<?php echo $novel_gameid; ?>,'recent');return false;" id="recent" name="recent" class="whiteColorDuration aunderline" href="#">Recent</a> |  -->
-		<a onclick="javascript:updateScores(<?php echo $novel_gameid; ?>,'thisweek');return false;" id="thisweek" name="thisweek" class="whiteColorDuration aunderline" href="#">This Week</a> | 
-		<a onclick="javascript:updateScores(<?php echo $novel_gameid; ?>,'thismonth');return false;" id="thismonth" name="thismonth" class="whiteColorDuration" href="#">This Month</a> | 
+		<a onclick="javascript:updateScores(<?php echo $novel_gameid; ?>,'thisweek');return false;" id="thisweek" name="thisweek" class="whiteColorDuration aunderline" href="#">This Week</a> |
+		<a onclick="javascript:updateScores(<?php echo $novel_gameid; ?>,'thismonth');return false;" id="thismonth" name="thismonth" class="whiteColorDuration" href="#">This Month</a> |
 		<a onclick="javascript:updateScores(<?php echo $novel_gameid; ?>,'alltimes');return false;" id="alltimes" name="alltimes" class="whiteColorDuration" href="#">All TImes</a>)</td></tr>
 
 <tr>
@@ -793,11 +798,11 @@ function printHighScores($novel_gameid, $duration)
 	}
 
 	//echo $gamesql;
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a201"), "","");
-	//echo 'mysql_error()='.mysql_error(); 
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,402,nep("a201"), "","");
+	//echo 'mysql_error()='.mysql_error();
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		echo '<tr><td>&nbsp;</td>';
 		if ($row['name']=="")
@@ -817,18 +822,18 @@ function printHighScores($novel_gameid, $duration)
 <tr><td colspan="4" style="padding-top:0px;padding-bottom:8px;line-height:8px;">&nbsp;</td></tr>
 
 </table>
-<?php 
-} 
+<?php
+}
 // end function printHighScores()
 
 function recentScores()
 {
 ?>
 <p>
-New games added: 
-<a class="sidebarTextUnderline" href="Scorpion-Solitaire.php">Scorpion Solitaire</a>, 
-<a class="sidebarTextUnderline" href="Tripeaks-Solitaire.php">Tripeaks Solitaire</a>, 
-<a class="sidebarTextUnderline" href="Russian-Solitaire.php">Russian Solitaire</a>, 
+New games added:
+<a class="sidebarTextUnderline" href="Scorpion-Solitaire.php">Scorpion Solitaire</a>,
+<a class="sidebarTextUnderline" href="Tripeaks-Solitaire.php">Tripeaks Solitaire</a>,
+<a class="sidebarTextUnderline" href="Russian-Solitaire.php">Russian Solitaire</a>,
 <a class="sidebarTextUnderline" href="Yukon-Solitaire.php">Yukon-Solitaire</a>.
 <br/>
 </p>
@@ -844,7 +849,7 @@ New games added:
 </colgroup>
 
 <tr><td colspan="6" style="padding-top:8px;padding-bottom:8px;"><span style="margin-left:32px;" class="sidebarOrange">&nbsp;<?php //echo get_current_page_content("gamename"); ?>&nbsp;Recent Game Scores:</span>
-&nbsp; 
+&nbsp;
 
 <tr>
 	<th>&nbsp;</th>
@@ -860,13 +865,13 @@ New games added:
 	$where_clause="";
 	// recent scores
 	$gamesql = "select gameid,name,score,date from highscores ".$where_clause." order by date desc limit 0,".$GLOBALS['digsolitaire_highscores_limit_game_page'];
-	
+
 	//echo $gamesql;
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a201"), "","");
-	//echo 'mysql_error()='.mysql_error(); 
+	$query = mysqli_query($conn5,$gamesql) or errorpage(false,402,nep("a201"), "","");
+	//echo 'mysql_error()='.mysql_error();
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		echo '<tr style="margin-top:20px;">';
 		echo '<td valign="top" align="center"><a href="'.getGameLinkName($row['gameid']).'"><img style="border:0px;margin-top:0px;" src="/gicons/play_icon.gif" width="20" height="20"/></a></td>';
@@ -889,8 +894,8 @@ New games added:
 <tr><td colspan="6" style="padding-top:0px;padding-bottom:8px;line-height:8px;">&nbsp;</td></tr>
 
 </table>
-<?php 
-} 
+<?php
+}
 // end function printHighScores()
 
 function getGameName($gameid)
@@ -975,7 +980,7 @@ function printFunzolaCategories($category)
 	$first=true;
 	$itemspacer="&nbsp;&nbsp;&nbsp;";
 
-	foreach ($categories as $cat) 
+	foreach ($categories as $cat)
 	{
 		if ($cat['type'] == getcattype($category))
 		{
@@ -984,7 +989,7 @@ function printFunzolaCategories($category)
 				$first=false;
 			}
 			else
-			{		
+			{
 				echo $itemspacer."|".$itemspacer;
 			}
 			if ($cat['catnum'] == $category)
@@ -1056,14 +1061,14 @@ function pageExists()
 	//echo '$pagename='.$pagename.'<br/>';;
 
 	$lastslash=strrpos($pagename,"/");
-	
+
 	if (($lastslash>0) & ($GLOBALS['enableCategories']))
 	{
 		//echo 'folder page';
 
 		$folder=substr($pagename,0,$lastslash);
 		$pagename=substr($pagename,($lastslash+1));
-		
+
 		//echo '$folder='.$folder.'<br/>';;
 		//echo '$pagename='.$pagename.'<br/>';;
 
@@ -1145,7 +1150,7 @@ function printFunzolaTopBoxGame($gameID)
 						<td style="width:76px;text-align:center;vertical-align:middle;background-image:url(<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/start_<?php echo neworold();?>game.png);background-position:top left;background-repeat:no-repeat;"><a class="topboxplaynowbutton" href="<?php echo getPageInternalURL($gameID);?>">Play now</a></td>
 						<td style="width:6px;">&nbsp;</td>
 						</tr>
-					</table>	
+					</table>
 				</td>
 			</tr>
 		</tbody>
@@ -1154,10 +1159,10 @@ function printFunzolaTopBoxGame($gameID)
 }
 
 function printFunzolaGameThumb($gameID)
-{ 
+{
 	$gameName=getGameNameByID($gameID);
 	?>
-	<img class="gamethumbimage<?php echo neworold();?>" src="<?php echo returnbaseurl().$GLOBALS['gameicon_prefix']."/".getGameInternalNameByID($gameID).".".$GLOBALS['gameicon_type'];?>" alt="<?php echo getGameNameByID($gameID);?>" width="<?php echo $GLOBALS['gameicon_width'];?>" height="<?php echo $GLOBALS['gameicon_height'];?>"/>  
+	<img class="gamethumbimage<?php echo neworold();?>" src="<?php echo returnbaseurl().$GLOBALS['gameicon_prefix']."/".getGameInternalNameByID($gameID).".".$GLOBALS['gameicon_type'];?>" alt="<?php echo getGameNameByID($gameID);?>" width="<?php echo $GLOBALS['gameicon_width'];?>" height="<?php echo $GLOBALS['gameicon_height'];?>"/>
 	<?php
 }
 
@@ -1192,7 +1197,7 @@ function printEmptyDivWithHeight($height)
 	echo '</div>';
 }
 
-// TODO 
+// TODO
 function getPageInternalURL($gameID)
 {
 	$category=getGameCategoryByID($gameID);
@@ -1240,7 +1245,7 @@ function funzolaTopBox($topBoxTitle,$topBoxGameID1,$topBoxGameID2,$topBoxGameID3
 				</table>
 			</td>
 			<td style="width:11px;text-align:right;vertical-align:middle;">&nbsp;</td>
-			
+
 			<td style="width:330px;height:326px;text-align:center;vertical-align:middle;background-image:url(<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/banner_330_324_bg.png);background-position:top right;background-repeat:no-repeat;">
 			<?php echo adsystem("gamepage_300x250");?>
 			</td>
@@ -1248,7 +1253,7 @@ function funzolaTopBox($topBoxTitle,$topBoxGameID1,$topBoxGameID2,$topBoxGameID3
 	</tbody>
 	</table>
 <?php
-} 
+}
 
 function print2TextGames($gameID1,$gameID2)
 { // height is 50 ?>
@@ -1270,7 +1275,7 @@ function print2TextGames($gameID1,$gameID2)
 		<tr><td colspan="4"><?php printEmptyDivWithHeight(14);?></td></tr>
 	</tbody>
 	</table>
-<?php } 
+<?php }
 
 function print4TextGames($gameID1,$gameID2,$gameID3,$gameID4)
 { // height is 50 ?>
@@ -1285,20 +1290,20 @@ function print4TextGames($gameID1,$gameID2,$gameID3,$gameID4)
 	</colgroup>
 	<tbody>
 		<tr style="height:16px;">
-			<td></td> 
+			<td></td>
 			<td style="vertical-align:middle;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID1);?>"><img style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']."/".neworold();?>_plus_icon_13x12.png"/></a></td>
 			<td style="vertical-align:middle;text-align:left;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID1);?>"><?php echo getGameNameByID($gameID1);?></a></td>
-			<td></td> 
+			<td></td>
 			<td style="vertical-align:middle;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID2);?>"><img style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']."/".neworold();?>_plus_icon_13x12.png"/></a></td>
 			<td style="vertical-align:middle;text-align:left;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID2);?>"><?php echo getGameNameByID($gameID2);?></a></td>
 		</tr>
 		<tr><td colspan="6"><?php printEmptyDivWithHeight(4);?></td></tr>
 
 		<tr style="height:16px;">
-			<td></td> 
+			<td></td>
 			<td style="vertical-align:middle;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID3);?>"><img style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']."/".neworold();?>_plus_icon_13x12.png"/></a></td>
 			<td style="vertical-align:middle;text-align:left;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID3);?>"><?php echo getGameNameByID($gameID3);?></a></td>
-			<td></td> 
+			<td></td>
 			<td style="vertical-align:middle;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID4);?>"><img style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']."/".neworold();?>_plus_icon_13x12.png"/></a></td>
 			<td style="vertical-align:middle;text-align:left;"><a class="categoryboxgamenamelink<?php echo neworold();?>" href="<?php echo getPageInternalURL($gameID4);?>"><?php echo getGameNameByID($gameID4);?></a></td>
 		</tr>
@@ -1306,7 +1311,7 @@ function print4TextGames($gameID1,$gameID2,$gameID3,$gameID4)
 		<tr><td colspan="6"><?php printEmptyDivWithHeight(14);?></td></tr>
 	</tbody>
 	</table>
-<?php } 
+<?php }
 
 function getFunzolaRandomGameID()
 {
@@ -1318,7 +1323,7 @@ function funzola3CategoryBoxes($categoryName1,$categoryName2,$categoryName3,
 						$category1Game1,$category1Game2,$category1Game3,$category1Game4,$category1Game5,$category1Game6,$category1Game7,$category1Game8,
 						$category2Game1,$category2Game2,$category2Game3,$category2Game4,$category2Game5,$category2Game6,$category2Game7,$category2Game8,
 						$category3Game1,$category3Game2,$category3Game3,$category3Game4,$category3Game5,$category3Game6,$category3Game7,$category3Game8)
-{ 
+{
 	if (false)
 	{
 	echo "category1Game1=$category1Game1<br/>";
@@ -1396,7 +1401,7 @@ function funzola3CategoryBoxes($categoryName1,$categoryName2,$categoryName3,
 			<td style="width:326px;height:50px;text-align:center;vertical-align:top;" colspan="2">
 					<?php // print2TextGames($category1Game5,$category1Game6); ?>
 					<?php print4TextGames($category1Game5,$category1Game6,$category1Game7,$category1Game8); ?>
-					
+
 			</td>
 			<td style="width:326px;height:50px;text-align:center;vertical-align:top;" colspan="2">
 					<?//php print2TextGames($category2Game5,$category2Game6); ?>
@@ -1409,8 +1414,8 @@ function funzola3CategoryBoxes($categoryName1,$categoryName2,$categoryName3,
 		</tr>
 	</tbody>
 	</table>
-<?php 
-} 
+<?php
+}
 
 function funzolaSortBox($sortby)
 { // width 980px ?>
@@ -1438,7 +1443,7 @@ function funzolaSortBox($sortby)
 	</tbody>
 	</table>
 <?php
-} 
+}
 
 function getFunzolaCategorySingleName()
 {
@@ -1482,8 +1487,8 @@ function funzolaCategoryGames2Lines(
 
 	</tbody>
 	</table>
-<?php 
-} 
+<?php
+}
 
 function printFunzolaBanner728x90()
 { ?>
@@ -1499,7 +1504,7 @@ function printFunzolaGame()
 { ?>
 		<table class="maintab" align="center" valign="top" border="0" cellspacing="0" cellpadding="0"  style="table-layout:fixed;width:980px;text-align:center;vertical-align:top;">
 		<tr><td style="width:980px;height:46px;background-image:url(<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/game_box_top.png);background-position:top left;background-repeat:no-repeat;text-align:left;">
-			
+
 			<table class="maintab" align="center" valign="top" border="0" cellspacing="0" cellpadding="0" style="table-layout:fixed;">
 				<colgroup>
 				<col width="26px" style="width:26px;" />
@@ -1569,10 +1574,10 @@ function getratingimage($rating)
 }
 
 function printFunzolaGameDescAndFacebook($gameID)
-{ 
+{
 	$thumbsup = get_current_page_content("thumbsup");
 	$totalvotes = get_current_page_content("thumbsup") + get_current_page_content("thumbsdown");
-	
+
 	?>
 	<table class="maintab" align="center" valign="top" border="0" cellspacing="0" cellpadding="0" style="table-layout:fixed;height:325px;">
 	<colgroup>
@@ -1594,11 +1599,11 @@ function printFunzolaGameDescAndFacebook($gameID)
 					<td>
 						<span class="gamePageGameDescriptionTitle"><?php echo get_current_page_content("gamename");?></span>
 						<?php printEmptyDivWithHeight(5); ?>
-						<?php 
-						if ((get_current_page_content("thumbsdown")+get_current_page_content("thumbsup"))>0){$ratingpic = getratingimage(get_current_page_content("score"));} else {$ratingpic = "funzola-rating-5.png";}  
+						<?php
+						if ((get_current_page_content("thumbsdown")+get_current_page_content("thumbsup"))>0){$ratingpic = getratingimage(get_current_page_content("score"));} else {$ratingpic = "funzola-rating-5.png";}
 						?>
-						<img alt="game rating" style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/<?php echo $ratingpic?>"/>						
-						<?php printEmptyDivWithHeight(20); ?>						
+						<img alt="game rating" style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/<?php echo $ratingpic?>"/>
+						<?php printEmptyDivWithHeight(20); ?>
 						<span class="gamePageGameDescription"><?php echo get_current_page_content("gameinstructions");?></span>
 					</td>
 
@@ -1646,7 +1651,7 @@ function printFunzolaGameDescAndFacebook($gameID)
 				  fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
 			</td>
-			
+
 			<td style="vertical-align:top;text-align:center;height:325px;">
 			<table border="0" cellpadding="0" cellspacing="0" style="height:325px;" style="vertical-align:top;">
 			<tr><td class="game-facebook-top-td"></td></tr>
@@ -1662,10 +1667,10 @@ function printFunzolaGameDescAndFacebook($gameID)
 }
 
 function printFunzolaGameDescAndAd($alreadyvoted=false)
-{ 
+{
 	$thumbsup = get_current_page_content("thumbsup");
 	$totalvotes = get_current_page_content("thumbsup") + get_current_page_content("thumbsdown");
-	
+
 	?>
 	<table class="maintab" align="center" valign="top" border="0" cellspacing="0" cellpadding="0" style="table-layout:fixed;height:270px;">
 	<colgroup>
@@ -1691,10 +1696,10 @@ function printFunzolaGameDescAndAd($alreadyvoted=false)
 								<?php printEmptyDivWithHeight(5); ?>
 								<span class="gamePageGameDescriptionTitle"><?php echo get_current_page_content("gamename");?></span>
 								<?php printEmptyDivWithHeight(5); ?>
-								<?php 
-								if ((get_current_page_content("thumbsdown")+get_current_page_content("thumbsup"))>0){$ratingpic = getratingimage(get_current_page_content("score"));} else {$ratingpic = "funzola-rating-5.png";}  
+								<?php
+								if ((get_current_page_content("thumbsdown")+get_current_page_content("thumbsup"))>0){$ratingpic = getratingimage(get_current_page_content("score"));} else {$ratingpic = "funzola-rating-5.png";}
 								?>
-								<img alt="game rating" style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/<?php echo $ratingpic?>"/>						
+								<img alt="game rating" style="border:0px;" src="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/<?php echo $ratingpic?>"/>
 							</td>
 							<td>
 								<table cellspacing="0" cellpadding="0" style="table-layout:fixed;">
@@ -1722,7 +1727,7 @@ function printFunzolaGameDescAndAd($alreadyvoted=false)
 										<td colspan="4" style="text-align:center;"><span class="gamePageWhatDoYouThinkText" id="votestats">What do you think?</span></td>
 										<?php } ?>
 									</tr>
-								</table>				
+								</table>
 								<?php printEmptyDivWithHeight(10); ?>
 							</td>
 							<td></td>
@@ -1739,7 +1744,7 @@ function printFunzolaGameDescAndAd($alreadyvoted=false)
 			</td>
 			<td style="text-align:right;vertical-align:top;">
 			</td>
-			
+
 			<td style="vertical-align:top;text-align:center;background-image:url(<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/funzola_320_270_box.png);background-position:top right;background-repeat:no-repeat">
 			<?php printEmptyDivWithHeight(10); ?>
 			<?php echo adsystem("gamepage_300x250");?>
@@ -1751,18 +1756,18 @@ function printFunzolaGameDescAndAd($alreadyvoted=false)
 
 function currentURL()
 {
-	if (strpos($_SERVER['REQUEST_URI'],"?")) 
-	{ 
-		return $GLOBALS['site_base_url'].substr($_SERVER['REQUEST_URI'],0,strpos($_SERVER['REQUEST_URI'],"?")); 
-	} 
-	else 
-	{ 
+	if (strpos($_SERVER['REQUEST_URI'],"?"))
+	{
+		return $GLOBALS['site_base_url'].substr($_SERVER['REQUEST_URI'],0,strpos($_SERVER['REQUEST_URI'],"?"));
+	}
+	else
+	{
 		return $GLOBALS['site_base_url'].$_SERVER['REQUEST_URI'];
 	}
 }
 
 function printFunzolaScreenshots()
-{ 
+{
 ?>
 	<table class="maintab" align="center" valign="top" border="0" cellspacing="0" cellpadding="0"  style="table-layout:fixed;width:980px;height:304px;text-align:right;vertical-align:middle;background-image:url(<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/game-screenshots.png);background-position:top left;background-repeat:no-repeat;">
 
@@ -1778,11 +1783,11 @@ function printFunzolaScreenshots()
 
 	<tr>
 	<td style="height:250px;" align="center">
-	<img class="screenshotthumb<?php echo neworold();?>" src="<?php echo returnbaseurl().$GLOBALS['games_screenshot_prefix']."/".get_current_page_content("gameinternalname").$GLOBALS['screenshot_suffix1'].".".$GLOBALS['gamescreenshot_type'];?>" alt="<?php echo  get_current_page_content("gamename");?>" width="<?php echo $GLOBALS['screenshots_width'];?>" height="<?php echo $GLOBALS['screenshots_height'];?>"/>  
+	<img class="screenshotthumb<?php echo neworold();?>" src="<?php echo returnbaseurl().$GLOBALS['games_screenshot_prefix']."/".get_current_page_content("gameinternalname").$GLOBALS['screenshot_suffix1'].".".$GLOBALS['gamescreenshot_type'];?>" alt="<?php echo  get_current_page_content("gamename");?>" width="<?php echo $GLOBALS['screenshots_width'];?>" height="<?php echo $GLOBALS['screenshots_height'];?>"/>
 	</td>
 
 	<td style="height:250px;" align="center">
-	<img class="screenshotthumb<?php echo neworold();?>" src="<?php echo returnbaseurl().$GLOBALS['games_screenshot_prefix']."/".get_current_page_content("gameinternalname").$GLOBALS['screenshot_suffix2'].".".$GLOBALS['gamescreenshot_type'];?>" alt="<?php echo  get_current_page_content("gamename");?>" width="<?php echo $GLOBALS['screenshots_width'];?>" height="<?php echo $GLOBALS['screenshots_height'];?>"/>  
+	<img class="screenshotthumb<?php echo neworold();?>" src="<?php echo returnbaseurl().$GLOBALS['games_screenshot_prefix']."/".get_current_page_content("gameinternalname").$GLOBALS['screenshot_suffix2'].".".$GLOBALS['gamescreenshot_type'];?>" alt="<?php echo  get_current_page_content("gamename");?>" width="<?php echo $GLOBALS['screenshots_width'];?>" height="<?php echo $GLOBALS['screenshots_height'];?>"/>
 	</td>
 	</tr>
 
@@ -1798,7 +1803,7 @@ function printFunzolaScreenshots()
 ///
 function funzolaGamepageMoreGames($category1Game1,$category1Game2,$category1Game3,$category1Game4,$category1Game5,$category1Game6,
 						$category1Game7,$category1Game8,$category1Game9,$category1Game10,$category1Game11,$category1Game12)
-{ 
+{
 	if (false)
 	{
 	echo "category1Game1=$category1Game1<br/>";
@@ -1854,8 +1859,8 @@ function funzolaGamepageMoreGames($category1Game1,$category1Game2,$category1Game
 
 	</tbody>
 	</table>
-<?php 
-} 
+<?php
+}
 
 function printFunzolaMoreGamesAndFacebook($category1Game1,$category1Game2,$category1Game3,$category1Game4,
 									 $category1Game5,$category1Game6,$category1Game7,$category1Game8,$category1Game9)
@@ -1878,7 +1883,7 @@ function printFunzolaMoreGamesAndFacebook($category1Game1,$category1Game2,$categ
 				</table>
 			</td>
 			<td style="text-align:right;vertical-align:top;">
-			</td>			
+			</td>
 			<td style="height:399px;vertical-align:top;text-align:center;">
 
 				<table style="width:490px;height:399px;table-layout:fixed;text-align:center;vertical-align:top;background-image:url(<?php echo returnbaseurl().$GLOBALS['uartwork_prefix']; ?>/game_moregames_3row.png);background-position:top right;background-repeat:no-repeat;" border="0" class="maintab" align="center" border="0" cellspacing="0" cellpadding="0">

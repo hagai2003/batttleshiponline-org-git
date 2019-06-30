@@ -2,28 +2,11 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{HTTP:x-wap-profile} !^$ [OR]
-RewriteCond %{HTTP_USER_AGENT} "android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos" [NC,OR]
-RewriteCond %{HTTP:Profile}       !^$
-RewriteCond %{HTTP_HOST}          !^m\.
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^ http://m.battleshiponline.org%{REQUEST_URI} [R,L]
-
-RewriteCond %{HTTP_ACCEPT} "text\/vnd\.wap\.wml|application\/vnd\.wap\.xhtml\+xml" [NC]
-RewriteCond %{REQUEST_URI} ^/$
-RewriteCond %{HTTP_HOST}          !^m\.
-RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
-RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^ http://m.battleshiponline.org%{REQUEST_URI} [R,L]
-
 RewriteCond %{HTTP_HOST} ^battleshiponline.org [NC]
 RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-RewriteRule ^(.*)$ http://www.battleshiponline.org/$1 [L,R=301]
+RewriteRule ^(.*)$ https://www.battleshiponline.org/$1 [L,R=301]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

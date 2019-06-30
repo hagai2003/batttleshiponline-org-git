@@ -1,7 +1,7 @@
-[13-Apr-2017 18:10:14 UTC] PHP Fatal error:  Call to undefined function mysql_connect() in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
-[03-Oct-2017 07:57:33 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
-[03-Oct-2017 07:57:34 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
-[09-May-2018 01:42:20 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
-[09-Dec-2018 16:07:53 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
-[09-Dec-2018 16:08:00 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
-[09-Dec-2018 16:08:05 UTC] PHP Warning:  mysql_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[13-Apr-2017 18:10:14 UTC] PHP Fatal error:  Call to undefined function mysqli_connect() in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[03-Oct-2017 07:57:33 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[03-Oct-2017 07:57:34 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[09-May-2018 01:42:20 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[09-Dec-2018 16:07:53 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[09-Dec-2018 16:08:00 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196
+[09-Dec-2018 16:08:05 UTC] PHP Warning:  mysqli_connect(): No such file or directory in /home/avatarga/public_html/battleshiponline.org/baseurl.php on line 196

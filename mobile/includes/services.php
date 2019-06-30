@@ -157,9 +157,9 @@ function get_ad_content_deprecated($ad_name)  // Hagai: get ad content from DB b
 {
 
 	$gamesql = "select adcontent from ads where adname='".$ad_name."'";
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a131"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,402,nep("a131"), "","");
 	
-	if ($row = mysql_fetch_array($query))
+	if ($row = mysqli_fetch_array($query))
 	{
 		return $row['adcontent'];
 	}
@@ -181,9 +181,9 @@ function get_page_content($page_internal_name,$section_name)
 	{
 		$gamesql = "select ".$section_name." from tgames where gameinternalname='".$page_internal_name."'";
 	}
-	$query = mysql_query($gamesql) or errorpage(false,442,nep("a131"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,442,nep("a131"), "","");
 	
-	if ($row = mysql_fetch_array($query))
+	if ($row = mysqli_fetch_array($query))
 	{
 		$result=$row[$section_name];
 		
@@ -211,9 +211,9 @@ function get_page_content_by_type($page_type,$section_name)
 function get_page_name_by_type($type)
 {
 	$gamesql = "select gameinternalname from tgames where type='".$type."'";
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a131"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,402,nep("a131"), "","");
 	
-	if ($row = mysql_fetch_array($query))
+	if ($row = mysqli_fetch_array($query))
 	{
 		return $row['gameinternalname'];
 	}
@@ -335,8 +335,8 @@ function does_mysql_record_exist($table,$where)
 
 function get_mysql_record($query)
 {
-	$result = mysql_query($query) or die(mysql_error().$query);
-	$row = mysql_fetch_array($result);
+	$result = mysqli_query($query) or die(mysql_error().$query);
+	$row = mysqli_fetch_array($result);
 	return $row[0];
 
 }
@@ -344,7 +344,7 @@ function get_mysql_record($query)
 function get_mysql_count($table,$where)
 {
 	$mysqlquery="SELECT COUNT(*) AS num FROM ".$table." ".$where;
-	$data = mysql_query($mysqlquery)  or errorpage(false,403,nep("a131"), "","",$mysqlquery);
+	$data = mysqli_query($mysqlquery)  or errorpage(false,403,nep("a131"), "","",$mysqlquery);
 	$row = mysql_fetch_assoc($data);
 	$numRecords = $row['num'];
 	return $numRecords;
@@ -413,10 +413,10 @@ function template_html_menu($where_clause,
 	
 	// fetching all menu items
 	$gamesql = "select gameid,gameinternalname,digsolitmenu,gamename,type from tgames ".$where_clause.$additional_where." and published='1' order by intoolbar asc limit 0,".$limit;
-	$query = mysql_query($gamesql) or errorpage(false,401,nep("a131"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,401,nep("a131"), "","");
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		$counter = $counter +1;
 		$gameinternalname = $row['gameinternalname'];
@@ -608,10 +608,10 @@ function print_more_articles($prefix,$middle,$suffix)
 {
 	// fetching all articles
 	$gamesql = "select gameid,gameinternalname,gamename,type from tgames where type='article' and published='1' order by intoolbar asc";
-	$query = mysql_query($gamesql) or errorpage(false,401,nep("a131"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,401,nep("a131"), "","");
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		$counter = $counter +1;
 		$gameinternalname = $row['gameinternalname'];
@@ -793,11 +793,11 @@ function printHighScores($novel_gameid, $duration)
 	}
 
 	//echo $gamesql;
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a201"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,402,nep("a201"), "","");
 	//echo 'mysql_error()='.mysql_error(); 
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		echo '<tr><td>&nbsp;</td>';
 		if ($row['name']=="")
@@ -862,11 +862,11 @@ New games added:
 	$gamesql = "select gameid,name,score,date from highscores ".$where_clause." order by date desc limit 0,".$GLOBALS['digsolitaire_highscores_limit_game_page'];
 	
 	//echo $gamesql;
-	$query = mysql_query($gamesql) or errorpage(false,402,nep("a201"), "","");
+	$query = mysqli_query($gamesql) or errorpage(false,402,nep("a201"), "","");
 	//echo 'mysql_error()='.mysql_error(); 
 	$counter = 0;
 
-	while ($row = mysql_fetch_array($query))
+	while ($row = mysqli_fetch_array($query))
 	{
 		echo '<tr style="margin-top:20px;">';
 		echo '<td valign="top" align="center"><a href="'.getGameLinkName($row['gameid']).'"><img style="border:0px;margin-top:0px;" src="/gicons/play_icon.gif" width="20" height="20"/></a></td>';

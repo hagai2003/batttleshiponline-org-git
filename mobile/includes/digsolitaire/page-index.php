@@ -21,12 +21,12 @@ $total_records=get_mysql_count("tgames","where type='game' and published='1'");
 
 // fetching all games
 $gamesql = "select gameid,gameinternalname,gamename from tgames where type='game' and published='1'  order by gameid asc";
-$query = mysql_query($gamesql) or errorpage(false,$gamesql,nep("i141"));
+$query = mysqli_query($gamesql) or errorpage(false,$gamesql,nep("i141"));
 $counter = 0;
 ?>
 <tr>
 <?php
-while (($row = mysql_fetch_array($query)) && ($counter<$GLOBALS['index_games_max_games']))
+while (($row = mysqli_fetch_array($query)) && ($counter<$GLOBALS['index_games_max_games']))
 {
 	$counter = $counter +1;
 	$gameinternalname = $row['gameinternalname'];

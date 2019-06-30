@@ -1,5 +1,5 @@
 <?php 
-include("includes/Mobile_Detect.php");
+include_once("includes/Mobile_Detect.php");
 global $mobileDetect;
 $mobileDetect = new Mobile_Detect;
 

@@ -70,8 +70,8 @@ else
 </div>
 </div>
 <?php if (!$mobileDetect->isMobile()) { ?>
-<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $GLOBALS['addthis_pubid'];?>"></script>
-<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $GLOBALS['addthis_pubid'];?>"></script>
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript"> 
   google.load('search', '1', {language : '<?php echo $GLOBALS['google_cse_lang'];?>', style : google.loader.themes.ESPRESSO});
   google.setOnLoadCallback(function() {

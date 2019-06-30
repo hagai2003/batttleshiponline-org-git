@@ -21,12 +21,12 @@ $total_records=get_mysql_count("tgames","where type='game' and published='1'");
 
 // fetching all games
 $gamesql = "select gameid,gameinternalname,gamename from tgames where type='game' and published='1'  order by gameid asc";
-$query = mysql_query($gamesql) or errorpage(false,$gamesql,nep("i141"));
+$query = mysqli_query($gamesql) or errorpage(false,$gamesql,nep("i141"));
 $counter = 0;
 ?>
 <tr>
 <?php
-while (($row = mysql_fetch_array($query)) && ($counter<$GLOBALS['index_games_max_games']))
+while (($row = mysqli_fetch_array($query)) && ($counter<$GLOBALS['index_games_max_games']))
 {
 	$counter = $counter +1;
 	$gameinternalname = $row['gameinternalname'];
@@ -52,18 +52,18 @@ while (($counter % $GLOBALS['index_games_per_line']) <> 0)
 </tr>
 </table>
 
-<?php if ($GLOBALS['digsolitaire_highscores']) 
+<?php if ($GLOBALS['digsolitaire_highscores'])
 { 	// showing high-scores ?>
 <div style="text-align:left;" name="highscoreDiv" id="highscoreDiv" >
-<?php 
+<?php
 	recentScores();
 ?>
 </div>
 <?php } ?>
 
 <?php echo get_current_page_content("section2");?>
-<?php 
-	// <!-- all articles table - START - if number of articles > 0-->  
+<?php
+	// <!-- all articles table - START - if number of articles > 0-->
 	if ($GLOBALS['index_show_more_articles_section'] & (get_mysql_count("tgames","where type='article' and published='1'")>0))
 	{
 		?>
@@ -86,8 +86,8 @@ while (($counter % $GLOBALS['index_games_per_line']) <> 0)
 			);
 		?>
 		</ul>
-		<?php 
-		// <!-- all articles table - END - if number of articles > 0-->  
+		<?php
+		// <!-- all articles table - END - if number of articles > 0-->
 	}
 ?>
 <br/>

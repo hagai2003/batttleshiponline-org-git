@@ -41,12 +41,12 @@ else
 
 if ($userrating ==1) 
 {
-  mysql_query("update tgames set thumbsup = thumbsup + 1 where gameid=".$gameid) or returnerror("error 107"); // die (mysql_error());	
+  mysqli_query("update tgames set thumbsup = thumbsup + 1 where gameid=".$gameid) or returnerror("error 107"); // die (mysql_error());	
 }
 else
 if ($userrating == 0) 
 {
-  mysql_query("update tgames set thumbsdown = thumbsdown + 1 where gameid=".$gameid) or returnerror("error 108");// die (mysql_error());	
+  mysqli_query("update tgames set thumbsdown = thumbsdown + 1 where gameid=".$gameid) or returnerror("error 108");// die (mysql_error());	
 }
 else
 {
@@ -59,11 +59,11 @@ if (!is_numeric($gameid))
 	echo "Invalid request";
 	return;
 }
-mysql_query("update tgames set score = 5*(thumbsup/(thumbsdown + thumbsup)) where gameid=".$gameid) or returnerror("error 109");
+mysqli_query("update tgames set score = 5*(thumbsup/(thumbsdown + thumbsup)) where gameid=".$gameid) or returnerror("error 109");
 
 $votessql = "select gameid,thumbsup,thumbsdown from tgames where gameid = '".$gameid."'";
-$query = mysql_query($votessql) or returnerror("error 110");  //or die (mysql_error());
-$row = mysql_fetch_array($query);
+$query = mysqli_query($votessql) or returnerror("error 110");  //or die (mysql_error());
+$row = mysqli_fetch_array($query);
 $thumbsup = $row['thumbsup'];
 $thumbsdown = $row['thumbsdown'];
 $totalvotes = $thumbsup + $thumbsdown;
