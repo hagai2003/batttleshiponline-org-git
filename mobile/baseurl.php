@@ -1,6 +1,6 @@
 <?php
 
-// CSS files should reside in /includes/template-name/    
+// CSS files should reside in /includes/template-name/
 //  - general.css is always included
 //  - $theme.css is included only if $include_theme_css=true
 
@@ -42,7 +42,7 @@ $site_creation_year = "2012"; // for footer message "copyright [xxxx]-[this year
 $site_name_with_tld = "Battleshiponline.org";  // only first letter is upper-case
 $site_name_for_index = "BattleshipOnline.org"; // all first letters of words are upper-case - e.x. - WildWildTaxi.net
 
-$site_base_url = "http://www.".strtolower($site_name_with_tld);
+$site_base_url = "https://www.".strtolower($site_name_with_tld);
 $site_base_url_local = "http://localhost/";
 
 $site_name_for_terms = $site_name_with_tld;						// the site name that will appear in the terms of use page
@@ -91,7 +91,7 @@ $index_game_thumb_class="imgThumb";		// <img> class when displaying game icons i
 // ---------------------------------------------------
 // digsolitaire games thumbs table on index page
 // ---------------------------------------------------
-$index_games_per_line=4;   
+$index_games_per_line=4;
 
 // ---------------------------------------------------
 // digsolitaire games sub-menu (menu below games) options
@@ -110,11 +110,11 @@ $index_game_thumb_height=89;
 $games_menu_games_max_games=16;
 
 // ---------------------------------------------
-//  ads MUST use this format:   
+//  ads MUST use this format:
 // ---------------------------------------------
 //  adname_SIZE_ad_include = true/false
-//  adname_SIZE_ad_type = adsense, cpmstar etc  
-// 
+//  adname_SIZE_ad_type = adsense, cpmstar etc
+//
 // ---------------------------------------------
 //	e.x. variables & file name:
 // ---------------------------------------------
@@ -141,7 +141,7 @@ $gamepage_300x250_ad_type = "adsense";
 $debug_ads_url_prefix = "http://www.lambofgodcommunity.com/data/debug-ad";
 
 // -----------------------
-// footer stuff 
+// footer stuff
 // -----------------------
 $footer_link_to_homepage = true; // add link to homepage on non-index pages
 $footer_link_to_homepage_anchor = $website_title_name;
@@ -149,10 +149,10 @@ $footer_link_to_homepage_anchor = $website_title_name;
 // ---------------------
 // for upload module
 // ---------------------
-$gameicon_width = 120;   // For uploader   
-$gameicon_height = 90;   // For uploader   
-$screenshots_width = 450;   // For uploader   
-$screenshots_height = 250;   // For uploader  
+$gameicon_width = 120;   // For uploader
+$gameicon_height = 90;   // For uploader
+$screenshots_width = 450;   // For uploader
+$screenshots_height = 250;   // For uploader
 
 // --------------------------------------------
 // contact page info (image is auto-generated)
@@ -167,7 +167,7 @@ $contact_image_width= 250;
 $contact_image_height= 40;
 
 //=======================================================
-// 
+//
 //       Don't change anything beyond this point
 //
 // ======================================================
@@ -198,7 +198,7 @@ function establish_db()
 		if (!$GLOBALS['workoffline'])
 		{
 			mysqli_query("SET character_set_results=utf8", $conn5);
-		}	
+		}
 		if ($GLOBALS['workoffline'] && !$GLOBALS['allow_offline_mode'])
 		{
 			echo "The site is down for maintenance, Please check back later.";

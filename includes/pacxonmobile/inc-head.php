@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("includes/Mobile_Detect.php");
 global $mobileDetect;
 $mobileDetect = new Mobile_Detect;
@@ -12,7 +12,7 @@ $allpage_responsive_ad_include = true;
 $allpage_responsive_ad_type = "adsense";
 
 $temp123=$GLOBALS['site_base_url'];
-$GLOBALS['site_base_url']="http://".$_SERVER['SERVER_NAME'];
+$GLOBALS['site_base_url']="https://".$_SERVER['SERVER_NAME'];
 
 $page_metatitle = get_current_page_content("metatitle");
 $page_metadescription = get_current_page_content("metadescription");
