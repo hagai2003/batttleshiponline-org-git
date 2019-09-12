@@ -1,7 +1,7 @@
 <?php
 global $mobileDetect;
 
-if ($mobileDetect->isMobile()) {
+// if ($mobileDetect->isMobile()) {
 $homepage_728x90_ad_include = false;
 $homepage_160x600_ad_include = false;
 $gamepage_728x90_ad_include = false;
@@ -9,7 +9,7 @@ $gamepage_160x600_ad_include = false;
 $gamepage_300x250_ad_include = false;
 $allpage_responsive_ad_include = true;
 $allpage_responsive_ad_type = "adsense";
-}
+// }
 
 $page_metatitle = get_current_page_content("metatitle");
 $page_metadescription = get_current_page_content("metadescription");
@@ -43,7 +43,7 @@ if ($GLOBALS['facebook_include_og_tags'] == true)
 <meta property="og:url" content="<?php echo returnhomepage().$_SERVER['REQUEST_URI'];?>" />
 <meta property="og:image" content="<?php echo $faveIcon;?>" />
 <meta property="og:description" content="<?php echo $page_metadescription;?>" />
-<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
 <meta property="og:site_name" content="<?php echo $GLOBALS['opengraph_sitename'];?>" />
 <?php
 }
@@ -60,6 +60,14 @@ if ($GLOBALS['facebook_app_id'] != "")
 <?php
 }
 ?>
+
+<link rel="stylesheet" href="/includes/assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+<link rel="stylesheet" href="/includes/assets/fonts/fontawesome-all.min.css">
+<link rel="stylesheet" href="/includes/assets/fonts/font-awesome.min.css">
+<link rel="stylesheet" href="/includes/assets/fonts/fontawesome5-overrides.min.css">
+<link rel="stylesheet" href="/includes/assets/css/styles.min.css">
+
 <link rel="shortcut icon" href="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix'].'/'.$GLOBALS['head_favicon']?>" />
 <?php if ($mobileDetect->isMobile()) { ?>
 <link rel="stylesheet" type="text/css" href="<?php echo returnbaseurl();?>generalmobile.css"/>

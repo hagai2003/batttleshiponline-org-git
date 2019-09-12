@@ -63,12 +63,13 @@ else
 <?php
 }
 ?>
-<p style="margin-left:0px;margin-top:20px;border:<?php echo get_current_page_content("objectborder");?>px solid #<?php echo $GLOBALS['game_object_border_color'];?>;width:<?php echo get_current_page_content("objectwidth");?>px;height:<?php echo get_current_page_content("objectheight");?>px;">
-<?php 
+<!-- <p style="margin-left:0px;margin-top:20px;border:<?php echo get_current_page_content("objectborder");?>px solid #<?php echo $GLOBALS['game_object_border_color'];?>;width:<?php echo get_current_page_content("objectwidth");?>px;height:<?php echo get_current_page_content("objectheight");?>px;"> -->
+<?php
 $script=get_current_page_content("gamescript");
-if (strpos($script,"script") || strpos($script,"object")) 
-{ 
-	// if "gameinstruction" has "<script" in it we assume novelgames (or other embedded game) 
+if (!empty($script))
+ // (strpos($script,"script") || strpos($script,"object"))
+{
+	// if "gameinstruction" has "<script" in it we assume novelgames (or other embedded game)
 	echo $script;
 }
 else
@@ -78,5 +79,5 @@ else
 <?php
 }
 ?>
-</p>
+<!-- </p> -->
 <?php echo get_current_page_content("section2");?>

@@ -1,3 +1,56 @@
+      <div id="wrapper" class="back-black" >
+  			<nav class="navbar navbar-dark navbar-expand-lg d-inline align-items-start sidebar sidebar-dark accordion p-0 toggled back-black"
+  			id="side-nav" >
+  					<div class="container-fluid d-flex flex-column p-0" style="margin-right:30px;background-color:black">
+
+
+              <div id="menudiv" align="left">
+                <a class=" nav-link"  href="<?php gethomepage();?>">
+                    <img src="<?php print_logo_url();?>" class="logoimg" alt="<?php echo $GLOBALS['logo_image_alt']?>" />
+                </a>
+                <hr class="hr1"/>
+              <ul>
+              <?php template_html_menu("where intoolbar>'0'",'<li><a href="','">','</a></li>',$GLOBALS['main_menu_number_of_games'],0,"","",$GLOBALS['main_menu_show_more_articles_page_if_relevant']);?>
+              <?php if (isset($GLOBALS['menuAdditionalItem']))
+              {
+              	echo $GLOBALS['menuAdditionalItem'];
+              } ?>
+              </ul>
+              </div>
+
+  					</div>
+  			</nav>
+          <div class="d-flex flex-column back-black" id="content-wrapper" style="background-color: rgb(0,0,0);">
+              <div id="content" class="back-black">
+                  <nav class="navbar navbar-light navbar-expand shadow  static-top back-black" id="top-nav" style="background-color: rgb(0,0,0);padding-top:0px;padding-bottom:0px;">
+                      <div class="container-fluid">
+                        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button">
+                        <i class="fas fa-bars"></i>
+                        </button>
+                        <div  style="display: inline-block;margin: 0 auto;">
+                          HEYY
+
+                      </div>
+                        </div>
+                  </nav>
+
+  								<!-- <div class="container"> -->
+                  <div class="container" style="max-width:none;">
+  							  <div class="row row-centered margin-top-non-mobile">
+  							    <div class="col-sm-12 text-left" style="margin-left:15px;padding-right:60px;">
+
+                      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                      <!-- battleship-responsive -->
+                      <ins class="adsbygoogle adslot_1"
+                           style="display:block"
+                           data-ad-client="ca-pub-1609789099200669"
+                           data-ad-slot="5001911059"
+                           data-full-width-responsive="true"></ins>
+                      <script>
+                           (adsbygoogle = window.adsbygoogle || []).push({});
+                      </script>
+
+<?php return; ?>
 <div id="maincontainer">
 <div id="topsection">
 <div class="innertube">
@@ -56,4 +109,3 @@ if (!$mobileDetect->isMobile())
 <div id="contentwrapper">
 <div id="contentcolumn">
 <div class="innertube">
-<?php adsystem("allpage_responsive");     ?>

@@ -140,7 +140,7 @@ $gamepage_160x600_ad_type = "adsense";
 $gamepage_300x250_ad_include = false;
 $gamepage_300x250_ad_type = "adsense";
 
-$debug_ads_url_prefix = "http://www.lambofgodcommunity.com/data/debug-ad";
+$debug_ads_url_prefix = "/includes/assets/img/ad_728";
 
 // -----------------------
 // footer stuff

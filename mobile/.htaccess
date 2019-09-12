@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+
+RewriteCond %{HTTP_HOST} ^battleshiponline.org [NC]
+RewriteRule ^(.*)$ https://www.battleshiponline.org/$1 [L,R=301]
+RewriteRule ^idlogger/(.*)$ https://www.battleshiponline.org [R=301,L]
+RewriteRule ^hmailer/(.*)$ https://www.battleshiponline.org [R=301,L]
+
+RewriteCond %{HTTP_HOST} m.battleshiponline.org [NC]
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ https://www.battleshiponline.org/$1 [L,R=301]
+
+</IfModule>

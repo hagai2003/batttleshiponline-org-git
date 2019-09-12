@@ -568,6 +568,7 @@ function errorpage($a,$b,$c)
 
 function error_page_404($page)
 {
+	logDebug("function: error_page_404");
 	// including 404 page
 	header('HTTP/1.0 404 Not Found');
 	$pagetoinclude="includes/".$GLOBALS['template_name']."/page-404.php";     // this page template is static since we don't want it in the pages table really
@@ -1046,6 +1047,10 @@ function neworoldhomepage()
 	}
 }
 
+function logDebug($msg)
+{
+	error_log($msg);
+}
 function pageExists()
 {
 	global $pageExistChecked;
@@ -1053,17 +1058,20 @@ function pageExists()
 
 	if ($pageExistChecked)
 	{
+		logDebug("pageExists pageExistChecked=".$pageExistChecked);
 		return $pageExist;
 	}
 	$pageExistChecked=true;
 
 	global $pagename;
 	//echo '$pagename='.$pagename.'<br/>';;
+	logDebug("pageExists checking 0");
 
 	$lastslash=strrpos($pagename,"/");
 
 	if (($lastslash>0) & ($GLOBALS['enableCategories']))
 	{
+		logDebug("pageExists checking 1");
 		//echo 'folder page';
 
 		$folder=substr($pagename,0,$lastslash);
@@ -1075,6 +1083,7 @@ function pageExists()
 		// handling folders
 		if (does_page_exist($pagename) && strpos($_SERVER["REQUEST_URI"],".php"))
 		{
+			logDebug("pageExists checking 2");
 			// only games are supported in folders
 			if (get_mysql_record("select type from tgames where gameinternalname='".$pagename."'") == "game")
 			{
@@ -1102,6 +1111,7 @@ function pageExists()
 		}
 	}
 
+	logDebug("pagename=$pagename");
 	// handling non-folder pages
 	if ((does_page_exist($pagename) && strpos($_SERVER["REQUEST_URI"],".php")) || ($pagename=="index"))
 	{

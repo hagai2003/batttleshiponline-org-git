@@ -24,13 +24,13 @@ $pagename=get_current_full_uri();
 pageExists();
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
 <?php
 include("includes/".$GLOBALS['template_name']."/inc-head.php");
 ?>
 </head>
-<body>
+<body class="text-center  back-black" id="page-top" style="color: #CCCCCC;"  ondragstart="return false;" ondrop="return false;">
 <?php
 include("includes/".$GLOBALS['template_name']."/inc-title.php");
 // ---------------------------
