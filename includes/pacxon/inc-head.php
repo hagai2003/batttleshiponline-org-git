@@ -69,11 +69,7 @@ if ($GLOBALS['facebook_app_id'] != "")
 <link rel="stylesheet" href="/includes/assets/css/styles.min.css">
 
 <link rel="shortcut icon" href="<?php echo returnbaseurl().$GLOBALS['uartwork_prefix'].'/'.$GLOBALS['head_favicon']?>" />
-<?php if ($mobileDetect->isMobile()) { ?>
-<link rel="stylesheet" type="text/css" href="<?php echo returnbaseurl();?>generalmobile.css"/>
-<?php } else { ?>
 <link rel="stylesheet" type="text/css" href="<?php echo returnbaseurl();?><?php echo $GLOBALS['general_css'];?>"/>
-<?php } ?>
 <?php if ($GLOBALS['include_theme_css']) {?>
 <link rel="stylesheet" type="text/css" href="<?php echo returnbaseurl().$GLOBALS['theme'];?>.css"/>
 <?php } ?>

@@ -7,16 +7,6 @@ include("includes/services.php");
 include("includes/lang.php");
 include("includes/lang.php");
 
-include_once("includes/Mobile_Detect.php");
-global $mobileDetect;
-$mobileDetect = new Mobile_Detect;
-
-if ($mobileDetect->isMobile() || $mobileDetect->isTablet())
-{
-	$template_name=$template_name."mobile";
-}
-
-
 handle_specific_pages();
 $pagename=get_current_full_uri();
 

@@ -28,7 +28,7 @@
                         <i class="fas fa-bars"></i>
                         </button>
                         <div  style="display: inline-block;margin: 0 auto;">
-                          HEYY
+                          <h2>Battleship Games</h2>
 
                       </div>
                         </div>
@@ -41,7 +41,7 @@
 
                       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                       <!-- battleship-responsive -->
-                      <ins class="adsbygoogle adslot_1"
+                      <ins class="adsbygoogle adslot_1 d-none d-md-block"
                            style="display:block"
                            data-ad-client="ca-pub-1609789099200669"
                            data-ad-slot="5001911059"
