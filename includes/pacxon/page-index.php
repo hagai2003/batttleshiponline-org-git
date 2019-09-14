@@ -56,11 +56,13 @@ else
 <?php echo get_current_page_content("section1");?>
 <?php
 }
+echo get_current_page_content("gamescript");
+
 ?>
-<p style="margin-left:0px;margin-top:20px;border:<?php echo get_current_page_content("objectborder");?>px solid #<?php echo $GLOBALS['game_object_border_color'];?>;width:<?php echo get_current_page_content("objectwidth");?>px;height:<?php echo get_current_page_content("objectheight");?>px;">
+<!-- <p style="margin-left:0px;margin-top:20px;border:<?php echo get_current_page_content("objectborder");?>px solid #<?php echo $GLOBALS['game_object_border_color'];?>;width:<?php echo get_current_page_content("objectwidth");?>px;height:<?php echo get_current_page_content("objectheight");?>px;">
 
 <object width="<?php echo get_current_page_content("objectwidth");?>" height="<?php echo get_current_page_content("objectheight");?>"><param name="movie" value="games/<?php echo get_game_swf_name();?>.swf"/><embed src="games/<?php echo get_game_swf_name();?>.swf" type="application/x-shockwave-flash" width="<?php echo get_current_page_content("objectwidth");?>" height="<?php echo get_current_page_content("objectheight");?>"></embed></object>
-</p>
+</p> -->
 <?php
 if ($showPacxonTopAdsInsteadOfSide)
 {
