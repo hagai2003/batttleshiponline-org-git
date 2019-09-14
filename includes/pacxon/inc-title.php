@@ -49,6 +49,7 @@
                       <script>
                            (adsbygoogle = window.adsbygoogle || []).push({});
                       </script>
+                      <br/>
 
 <?php return; ?>
 <div id="maincontainer">
