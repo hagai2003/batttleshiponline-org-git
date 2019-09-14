@@ -37,7 +37,7 @@
   								<!-- <div class="container"> -->
                   <div class="container" style="max-width:none;">
   							  <div class="row row-centered margin-top-non-mobile">
-  							    <div class="col-sm-12 text-left" style="margin-left:15px;padding-right:60px;">
+  							    <div class="gamediv col-sm-12 text-left">
 
                       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                       <!-- battleship-responsive -->
