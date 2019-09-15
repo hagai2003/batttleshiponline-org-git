@@ -13,25 +13,20 @@
 		</div>
 </footer>
 					    </div>
-							    <!-- <div class="col-sm-3" style="padding-right:8px;padding-left:12px;">
+							    <div class="col-sm-3" style="padding-right:8px;padding-left:12px;">
 							      <p>
-                      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                      <style type="text/css">
-                      .adslot_1 { display:inline-block; width: 120px; height: 600px; }
-                      @media (max-width: 400px) { .adslot_1 { display: none; } }
-                      @media (min-width:400px) { .adslot_1 { width: 120px; height: 600px; } }
-                      @media (min-width:1000px) { .adslot_1 { width: 160px; height: 600px; } }
-                      </style>
-                      <ins class="adsbygoogle adslot_1"
+											<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                      <!-- battleship-responsive -->
+                      <ins class="adsbygoogle adslot_1 d-none d-md-block"
+                           style="display:block"
                            data-ad-client="ca-pub-1609789099200669"
-                           data-ad-slot="5384186523"
-                           data-ad-format="auto"
+                           data-ad-slot="4758508096"
                            data-full-width-responsive="true"></ins>
                       <script>
                            (adsbygoogle = window.adsbygoogle || []).push({});
                       </script>
                     </p>
-							    </div> -->
+							    </div>
 							  </div>
 							</div>
 

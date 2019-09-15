@@ -37,18 +37,7 @@
   								<!-- <div class="container"> -->
                   <div class="container" style="max-width:none;">
   							  <div class="row row-centered margin-top-non-mobile">
-  							    <div class="gamediv col-sm-12 text-left">
-
-                      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                      <!-- battleship-responsive -->
-                      <ins class="adsbygoogle adslot_1 d-none d-md-block"
-                           style="display:block"
-                           data-ad-client="ca-pub-1609789099200669"
-                           data-ad-slot="5001911059"
-                           data-full-width-responsive="true"></ins>
-                      <script>
-                           (adsbygoogle = window.adsbygoogle || []).push({});
-                      </script>
+  							    <div class="gamediv col-sm-9 text-left">
                       <br/>
 
 <?php return; ?>
