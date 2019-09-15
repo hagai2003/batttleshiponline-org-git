@@ -84,7 +84,7 @@ $facebook_include_og_tags = true;
 // -----------------------
 // template menu options
 // -----------------------
-$main_menu_number_of_games=5;			// how many items to show in menu (items = anything, not only games)
+$main_menu_number_of_games=6;			// how many items to show in menu (items = anything, not only games)
 $main_menu_show_links_page=true;		// show links page on main
 $main_menu_show_contactus_page=true;	// show contact page on main
 $main_menu_show_more_articles_page_if_relevant=false;  // show 'more-articles' page in menu if number of valid menu items exceeds $main_menu_number_of_games
