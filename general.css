@@ -188,7 +188,7 @@ margin-left:15px;padding-right:60px;
 {
   display: none;
 }
-@media (max-width: 600px)
+@media (max-width: 600px) and  (orientation: portrait)
 {
   .mobileportrait
   {
