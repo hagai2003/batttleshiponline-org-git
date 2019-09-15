@@ -37,7 +37,7 @@
   								<!-- <div class="container"> -->
                   <div class="container" style="max-width:none;">
   							  <div class="row row-centered margin-top-non-mobile">
-  							    <div class="gamediv col-sm-9 text-left">
+  							    <div class="col-sm-9 text-left">
                       <br/>
 
 <?php return; ?>
