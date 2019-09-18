@@ -66,7 +66,7 @@ $logo_image_width=400;  // doesn't have to be set
 $logo_image_height=400; // doesn't have to be set
 
 $head_favicon=strtolower(str_replace (" ","",$website_title_name)."-favicon.png");	// logo file namee.x. "wildwildtaxi-favicon.jpg";
-$GLOBALS['favicon']="https://www.battleshiponline.org/uartwork/battleship_game.png";
+$GLOBALS['favicon']="uartwork/battleship_game.png";
 $gameicon_prefix = "gicons";		// name of icons folder
 $gameicon_type = "jpg";				// type of game icons
 $gameicon_file_prefix = "thumb-";	// prefix for each icon file (can be empty)
