@@ -48,7 +48,7 @@ $site_base_url_local = "http://localhost/";
 $site_name_for_terms = $site_name_with_tld;						// the site name that will appear in the terms of use page
 $site_name_for_terms_caps = strtoupper($site_name_with_tld);	// the site name that will appear in the terms of use page
 
-$menuAdditionalItem="<li><div style='line-height:22px'>&nbsp;</div></li><li><span style='margin-left:15px;color:white;'><b>More Games:</b></span></li><li><a target=\"_blank\" href=\"https://www.webpacman.com\">Pacman</a></li><li><a target=\"_blank\" href=\"https://www.solitaireking.com\">Solitaire</a></li><li><a target=\"_blank\" href=\"https://www.livesudoku.com\">Sudoku</a></li><li><a target=\"_blank\" href=\"https://www.digbejeweled.com\">Bejeweled</a></li>";
+$menuAdditionalItem="<li><div style='line-height:22px'>&nbsp;</div></li><li><span style='margin-left:15px;color:white;'><b>More Games:</b></span></li><li><a target=\"_blank\" href=\"https://www.webpacman.com\">Pacman</a></li><li><a target=\"_blank\" href=\"https://www.solitaireking.com\">Solitaire</a></li><li><a target=\"_blank\" href=\"https://www.livesudoku.com\">Sudoku</a></li><li><a target=\"_blank\" href=\"https://www.digbejeweled.com\">Bejeweled</a></li><li><a target=\"_blank\" href=\"https://www.jspuzzles.com\">Free Jigsaw Puzzles</a></li>";
 
 // ------------------------------------------------------------------------------
 // some titles of pages and divs (links page, contact [age, articles page)
